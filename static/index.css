@@ -1,0 +1,127 @@
+/* ---------- 基本 ---------- */
+body {
+  margin: 0;
+  font-family: "Inter", "Noto Sans JP", sans-serif;
+  background: linear-gradient(160deg, #0c0f1d 0%, #0b1a2f 60%, #0a2540 100%);
+  color: #f2f5fa;
+}
+
+/* ---------- コンテナ ---------- */
+.container {
+  max-width: 850px;
+  margin: 50px auto;
+  padding: 32px 38px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+/* ---------- ロゴ ---------- */
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.logo span {
+  color: #4aa8ff;
+  font-weight: 800;
+}
+
+/* キャッチコピー */
+.catch {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* ---------- フォーム ---------- */
+.form .row {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #cfd6e4;
+}
+
+.form input,
+.form select {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.07);
+  color: #c4c7cc;
+  font-size: 16px;
+}
+
+input::placeholder {
+  color: #e9ebee;
+}
+
+/* ---------- ボタン ---------- */
+.btn {
+  margin-top: 28px;
+  width: 200px;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #3ea1ff, #5dd6ff);
+  color: #000;
+  font-weight: 700;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* ---------- 結果 ---------- */
+h2 {
+  margin-top: 40px;
+  font-size: 22px;
+}
+
+.results {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+}
+
+.results th {
+  text-align: left;
+  padding: 12px 10px;
+  background: rgba(255,255,255,0.07);
+  color: #bfc7d7;
+}
+
+.results td {
+  padding: 14px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ---------- エラー ---------- */
+.error {
+  margin-top: 16px;
+  padding: 14px;
+  background: rgba(255, 80, 80, 0.18);
+  border-left: 4px solid #ff4d4d;
+  border-radius: 8px;
+  color: #ffb3b3;
+}
+
+/* ---------- フッター ---------- */
+footer {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #8fa0ba;
+  text-align: center;
+}

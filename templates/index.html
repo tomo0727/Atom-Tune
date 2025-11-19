@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>Atom Tune | 楽曲推薦</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+
+<body>
+
+  <div class="container">
+    
+    <!-- ロゴ -->
+    <div class="logo">
+      ● <span>ATOM TUNE</span>
+    </div>
+
+    <!-- キャッチコピー -->
+    <div class="catch">
+      今のあなたの雰囲気に、<br>
+      ぴったりの一曲を
+    </div>
+
+    <!-- フォーム -->
+    <form action="{{ url_for('recommend') }}" method="post" class="form">
+
+      <div class="row">
+        <label>最低音（例 mid1G）</label>
+        <input type="text" name="min_note" value="{{ prev.min_note if prev else 'mid1G' }}">
+      </div>
+
+      <div class="row">
+        <label>最高音（例 hiB）</label>
+        <input type="text" name="max_note" value="{{ prev.max_note if prev else 'hiB' }}">
+      </div>
+
+      <div class="row">
+        <label>年代範囲</label>
+        <input type="number" name="year_min" value="{{ prev.year_min if prev else 2010 }}">
+        <input type="number" name="year_max" value="{{ prev.year_max if prev else 2024 }}">
+      </div>
+
+      <div class="row">
+        <label>雰囲気（タグ or 自由入力）</label>
+        <select name="mood_select">
+          <option value="">— タグを選択 —</option>
+          {% for m in moods %}
+            <option value="{{ m }}">{{ m }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="row">
+        <label>自由入力</label>
+        <input type="text" name="mood_input" placeholder="例: 全員で盛り上がれる/しっとりとした" value="{{ prev.user_mood if prev else '' }}">
+      </div>
+
+      <button type="submit" class="btn">曲を探す →</button>
+    </form>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if results %}
+      <h2>おすすめ（上位 {{ results|length }} 件）</h2>
+      <table class="results">
+        <thead>
+          <tr>
+            <th>曲名</th>
+            <th>アーティスト</th>
+            <th>年</th>
+            <th>音域</th>
+            <th>説明</th>
+            <th>類似度</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in results %}
+            <tr>
+              <td>{{ r['タイトル'] }}</td>
+              <td>{{ r['アーティスト'] }}</td>
+              <td>{{ r['年代'] }}</td>
+              <td>{{ r['最低音'] }} — {{ r['最高音'] }}</td>
+              <td>{{ r['説明'] }}</td>
+              <td>{{ "%.3f"|format(r['類似度']) }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+    <footer>
+      OpenAI APIキーは環境変数で設定してください。
+    </footer>
+
+  </div>
+
+</body>
+</html>
